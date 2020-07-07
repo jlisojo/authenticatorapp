@@ -41,11 +41,20 @@ class App extends Component {
     });
   }
 
-  storeData(userID) {
+  createData() {
     const { currentUser } = firebase.auth();
-    var dreamId = 100;
-    firebase.database().ref(`/users/${currentUser.uid}/dreams/${dreamId}`)
-      .set({title: "Dream One", description: "Lets finish this!"});
+    var dreamId = 200;
+    firebase.database().ref(`/users/${currentUser.uid}/dreams`)
+      .push({title: "Dream Two", description: "Lets finish this!"});
+  }
+
+  readData(user) {
+  }
+
+  updateData(dream) {
+  }
+
+  deleteData(dream) {
   }
 
   renderContent() {
@@ -54,8 +63,8 @@ class App extends Component {
         return (
           <Card>
             <CardSection>
-              <Button onPress={this.storeData.bind(this)}>
-                Store Data
+              <Button onPress={this.createData.bind(this)}>
+                Create Data
               </Button>
             </CardSection>
             <CardSection>
